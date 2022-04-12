@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project_sci">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,7 @@
         </activity>
 
         <activity
-            android:name=".Complaints"
+            android:name=".ui.comp.Complaints"
             android:label="@string/menu_complaints" />
         <activity
             android:name=".MainActivity"

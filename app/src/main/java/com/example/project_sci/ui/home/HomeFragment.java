@@ -1,9 +1,12 @@
 package com.example.project_sci.ui.home;
 
 import android.os.Bundle;
+import android.support.v4.app.SharedElementCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,20 +17,31 @@ import com.example.project_sci.R;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    WebView myWebView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        WebView myWebView = root.findViewById(R.id.webview1);
+
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setAllowContentAccess(true);
+        myWebView.getSettings().setDomStorageEnabled(true);
+        myWebView.getSettings().setLoadsImagesAutomatically(true);
+        myWebView.getSettings().setLoadWithOverviewMode(true);
+        myWebView.getSettings().setAppCacheEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.loadUrl("https://science.asu.edu.eg/ar/announcements");
         return root;
+    }
+    @Override
+    public void setEnterSharedElementCallback(SharedElementCallback callback) {
+        if(myWebView.canGoBack())
+        {
+            myWebView.goBack();
+        }
+        else
+            super.setEnterSharedElementCallback(callback);
     }
 }
