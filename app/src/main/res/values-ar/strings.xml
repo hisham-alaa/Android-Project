@@ -14,5 +14,5 @@
     <string name="number_of_credit_hours">عدد الساعات المعتمده</string>
     <string name="your_grade_or_cgpa">التقدير او المعدل التراكمي</string>
     <string name="add">اضف</string>
-    <string name="calculate_gpa">"احسب المعدل التراكمي "</string>
+    <string name="calculate_gpa">"احسب المعدل "</string>
 </resources>
